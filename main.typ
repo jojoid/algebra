@@ -326,7 +326,7 @@
 ]
 
 #definition[
-  设 $cal(C)$ 是一个范畴，$*$ 是 $cal(C)$ 的一个终对象.
+  设 $cal(C)$ 是一个范畴，$*$ 是 $cal(C)$ 的终对象.
 
   定义  *$cal(C)^*$*：
   
@@ -360,7 +360,7 @@
 
 #proposition[
   $pi : A -> A slash ~, x |-> [x]_~$
-  是 $bold("Set")slash ~$ 的一个始对象，如下图
+  是 $bold("Set")slash ~$ 的始对象，如下图
   #align(
     center,
     commutative-diagram(
@@ -1038,7 +1038,7 @@
       arr((0,1), (1,1), $phi$),
     )
   )
-  集合 $S$ 上的一个*自由群*定义为 $cal(F)_S$ 中的一个始对象（如果存在的话）.
+  集合 $S$ 上的一个*自由群*定义为 $cal(F)_S$ 中的始对象（如果存在的话）.
   #align(
     center,
     commutative-diagram(
@@ -1131,7 +1131,7 @@
       arr((0,1), (1,1), $phi$),
     )
   )
-  集合 $S$ 上的一个*自由交换群*定义为 $cal(F)_S^bold("Ab")$ 中的一个始对象（如果存在的话）.
+  集合 $S$ 上的一个*自由交换群*定义为 $cal(F)_S^bold("Ab")$ 中的始对象（如果存在的话）.
   #align(
     center,
     commutative-diagram(
@@ -1213,6 +1213,36 @@
   $
     bold(op("ker") phi) := op(phi)^(-1) (e_(G')).
   $
+]
 
-  显然，$op("ker") phi$ 是 $G$ 的一个子群，$op("im") phi$ 是 $G'$ 的一个子群.
+#proposition[
+  设 $phi : G -> G'$ 是一个群同态. 那么
+
+  $1.$ $op("ker") phi$ 是 $G$ 的一个子群.
+  
+  $2.$ 对于 $G$ 的任何子群 $H$，$op(phi)(H)$ 是 $G'$ 的一个子群.
+]
+
+#import "@preview/fletcher:0.4.4" as fletcher: diagram, node, edge
+
+#proposition[
+  设 $phi : G -> G'$ 是一个群同态.
+  定义一个范畴 $cal(C)$，$op("Obj")(cal(C)) := {alpha : (K -> G)_bold("Grp") | K in bold("Grp"), phi compose alpha = "平凡同态" op(0) : K -> G' ("即" op(alpha)(K) subset op("ker")phi)}$，$forall alpha : (K -> G)_bold("Grp"), beta : (L -> G)_bold("Grp")". " alpha -> beta := {gamma : (K -> L)_bold("Grp") | alpha = beta compose gamma}$. 则包含函数 $i : op("ker") phi -> G$ 是范畴 $cal(C)$ 的终对象，如下图
+
+  #align(
+    center,
+    diagram(spacing: 2cm, {
+      let (k, g, gt, ker) = ((-1,0), (0,0), (1,0), (0,1))
+      node(k, $K$)
+      node(g, $G$)
+      node(gt, $G'$)
+      node(ker, $op("ker") phi$)
+
+      edge(k, g, $alpha$,label-side: right, "->")
+      edge(g, gt, $phi$,label-side: right, "->")
+      edge(k, gt, bend: +30deg, $0$, "->")
+      edge(ker, g, $i$, "hook->")
+      edge(k, ker, $exists ! macron(alpha)$, label-side: right, "->")
+    })
+  )
 ]
