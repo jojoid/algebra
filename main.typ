@@ -1242,7 +1242,7 @@
       edge(g, gt, $phi$,label-side: right, "->")
       edge(k, gt, bend: +30deg, $0$, "->")
       edge(ker, g, $i$, "hook->")
-      edge(k, ker, $exists ! macron(alpha)$, label-side: right, "->")
+      edge(k, ker, $exists ! macron(alpha)$, label-side: right, "-->")
     })
   )
 ]
