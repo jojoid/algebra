@@ -1019,26 +1019,27 @@
 #definition[
   *自由群*
 
-  给定集合 $S$，定义范畴 *$cal(F)_S$*
+  给定集合 $S$，定义范畴 *$cal(F)_S$*：
   $
     op("Obj")(cal(F)_S) :=
-    {(G, iota) | G in op("Obj")(bold("Grp")), iota : (S -> G)_bold("Set")}，
+    {iota : (S -> G)_bold("Set") | G in op("Obj")(bold("Grp"))}，
   $$
-    (G_1, iota_1) -> (G_2, iota_2) :=
-    {phi : (G_1 -> G_2)_(bold("Grp")) | phi compose iota_1 = iota_2}.
+    iota_1 -> iota_2 :=
+    {phi : (op("dom") iota_1 -> op("dom") iota_2)_(bold("Grp")) | phi compose iota_1 = iota_2}.
   $
+
   #align(
     center,
     commutative-diagram(
       node((0,0), $S$),
-      node((0,1), $G_1$),
-      node((1,1), $G_2$),
+      node((0,1), $op("dom") iota_1$),
+      node((1,1), $op("dom") iota_2$),
       arr((0,0), (0,1), $iota_1$),
       arr((0,0), (1,1), $iota_2$, label-pos: right),
       arr((0,1), (1,1), $phi$),
     )
   )
-  集合 $S$ 上的一个*自由群*定义为 $cal(F)_S$ 中的始对象（如果存在的话）.
+  集合 $S$ 上的*自由群*定义为 $cal(F)_S$ 中的始对象（如果存在的话；后面我们会证明它一定存在）
   #align(
     center,
     commutative-diagram(
@@ -1099,7 +1100,7 @@
 ]
 
 #proposition[
-  设 $S$ 是一个集合，$F_S$ 是它生成的自由群，函数 $iota : S -> F_S, \'a\' |-> \"a\"$. 则 $(F_S, iota)$ 满足 $S$ 上的自由群的泛性质.
+  设 $S$ 是一个集合，$F_S$ 是它生成的自由群，函数 $iota : S -> F_S, \'a\' |-> \"a\"$. 则 $iota$ 满足 $S$ 上的自由群的泛性质.
 ]
 
 #example[
@@ -1115,23 +1116,24 @@
   给定集合 $S$，定义范畴 *$cal(F)_S^bold("Ab")$*
   $
     op("Obj")(cal(F)_S^bold("Ab")) :=
-    {(G, iota) | G in op("Obj")(bold("Ab")), iota : S -> G}，
+    {iota : (S -> G)_bold("Set") | G in op("Obj")(bold("Ab"))}，
   $$
-    (G_1, iota_1) -> (G_2, iota_2) :=
-    {phi : (G_1 -> G_2)_(bold("Ab")) | phi compose iota_1 = iota_2}.
+    iota_1 -> iota_2 :=
+    {phi : (op("dom") iota_1 -> op("dom") iota_2)_(bold("Ab")) | phi compose iota_1 = iota_2}.
   $
+
   #align(
     center,
     commutative-diagram(
       node((0,0), $S$),
-      node((0,1), $G_1$),
-      node((1,1), $G_2$),
+      node((0,1), $op("dom") iota_1$),
+      node((1,1), $op("dom") iota_2$),
       arr((0,0), (0,1), $iota_1$),
       arr((0,0), (1,1), $iota_2$, label-pos: right),
       arr((0,1), (1,1), $phi$),
     )
   )
-  集合 $S$ 上的一个*自由交换群*定义为 $cal(F)_S^bold("Ab")$ 中的始对象（如果存在的话）.
+  集合 $S$ 上的*自由交换群*定义为 $cal(F)_S^bold("Ab")$ 中的始对象（如果存在的话；后面我们会证明它一定存在）.
   #align(
     center,
     commutative-diagram(
@@ -1156,9 +1158,9 @@
 ]
 
 #proposition[
-  $1.$ 设函数 $iota : emptyset -> ZZ^(plus.circle 0)$. 则 *$(ZZ^(plus.circle 0), iota)$* 满足 $emptyset$ 上的自由交换群的泛性质.
+  $1.$ 设函数 $iota : emptyset -> ZZ^(plus.circle 0)$. 则 *$iota$* 满足 $emptyset$ 上的自由交换群的泛性质.
 
-  $2.$ 设 $n in NN_+$，$S = {1, ... , n}$，函数 $iota : S -> ZZ^(plus.circle n), i |-> (0, ... , 0, underbrace(1, "第 i 位"), 0, ... , 0)$. 则 *$(ZZ^(plus.circle n), iota)$* 满足 $S$ 上的自由交换群的泛性质.
+  $2.$ 设 $n in NN_+$，$S = {1, ... , n}$，函数 $iota : S -> ZZ^(plus.circle n), i |-> (0, ... , 0, underbrace(1, "第 i 位"), 0, ... , 0)$. 则 *$iota$* 满足 $S$ 上的自由交换群的泛性质.
 ]
 
 #definition[
@@ -1174,7 +1176,7 @@
 ]
 
 #proposition[
-  设 $S$ 是一个集合，$H$ 是一个交换群，函数 $iota : S -> ZZ^(plus.circle S), iota(s) := (x in S) |->
+  设 $S$ 是一个集合，函数 $iota : S -> ZZ^(plus.circle S), iota(s) := (x in S) |->
   cases(
     1"," x = s,
     0"," x != s
@@ -1229,20 +1231,34 @@
   设 $phi : G -> G'$ 是一个群同态.
   定义一个范畴 $cal(C)$，$op("Obj")(cal(C)) := {alpha : (K -> G)_bold("Grp") | K in bold("Grp"), phi compose alpha = "平凡同态" op(0) : K -> G' ("即" op(alpha)(K) subset op("ker")phi)}$，$forall alpha : (K -> G)_bold("Grp"), beta : (L -> G)_bold("Grp")". " alpha -> beta := {gamma : (K -> L)_bold("Grp") | alpha = beta compose gamma}$. 则包含函数 $i : op("ker") phi -> G$ 是范畴 $cal(C)$ 的终对象，如下图
 
-  #align(
-    center,
-    diagram(spacing: 2cm, {
-      let (k, g, gt, ker) = ((-1,0), (0,0), (1,0), (0,1))
-      node(k, $K$)
-      node(g, $G$)
-      node(gt, $G'$)
-      node(ker, $op("ker") phi$)
+  #align(center, diagram(spacing: 2cm, {
+    let (k, g, gt, ker) = ((-1,0), (0,0), (1,0), (0,1))
+    node(k, $K$)
+    node(g, $G$)
+    node(gt, $G'$)
+    node(ker, $op("ker") phi$)
 
-      edge(k, g, $alpha$,label-side: right, "->")
-      edge(g, gt, $phi$,label-side: right, "->")
-      edge(k, gt, bend: +30deg, $0$, "->")
-      edge(ker, g, $i$, "hook->")
-      edge(k, ker, $exists ! macron(alpha)$, label-side: right, "-->")
-    })
-  )
+    edge(k, g, $alpha$,label-side: right, "->")
+    edge(g, gt, $phi$,label-side: right, "->")
+    edge(k, gt, bend: +30deg, $0$, "->")
+    edge(ker, g, $i$, "hook->")
+    edge(k, ker, $exists ! macron(alpha)$, label-side: right, "-->")
+  }))
+]
+
+#example[
+  如果 $A$ 是群 $G$ 的一个子集，$iota$ 满足 $A$ 上的自由群的泛性质，$i : A -> G$ 是包含映射，那么我们有一个唯一的群同态 $phi : F(A) -> G$ 使得下图交换
+
+  #align(center, diagram(spacing: 4cm, {
+    let (a, fa, g) = ((0,0), (1,0), (1,1))
+    node(a, $A$)
+    node(fa, $F(A)$)
+    node(g, $G$)
+
+    edge(a, fa, $iota$, "->")
+    edge(a, g, $i$, label-side: right, "->")
+    edge(fa, g, $phi$, "-->")
+  }))
+
+  我们称 $op(phi)(F(A))$ 为*群 $G$ 中由子集 $A$ 生成的子群*.
 ]
