@@ -1025,20 +1025,21 @@
     {iota : (S -> G)_bold("Set") | G in op("Obj")(bold("Grp"))}，
   $$
     iota_1 -> iota_2 :=
-    {phi : (op("dom") iota_1 -> op("dom") iota_2)_(bold("Grp")) | phi compose iota_1 = iota_2}.
+    {phi : (op("codom") iota_1 -> op("codom") iota_2)_(bold("Grp")) | phi compose iota_1 = iota_2}.
   $
 
   #align(
     center,
     commutative-diagram(
       node((0,0), $S$),
-      node((0,1), $op("dom") iota_1$),
-      node((1,1), $op("dom") iota_2$),
+      node((0,1), $op("codom") iota_1$),
+      node((1,1), $op("codom") iota_2$),
       arr((0,0), (0,1), $iota_1$),
       arr((0,0), (1,1), $iota_2$, label-pos: right),
       arr((0,1), (1,1), $phi$),
     )
   )
+
   集合 $S$ 上的*自由群*定义为 $cal(F)_S$ 中的始对象（如果存在的话；后面我们会证明它一定存在）
   #align(
     center,
@@ -1113,26 +1114,27 @@
 #definition[
   *自由交换群*
 
-  给定集合 $S$，定义范畴 *$cal(F)_S^bold("Ab")$*
+  给定集合 $S$，定义范畴 *$cal(F)_S^bold("Ab")$*：
   $
     op("Obj")(cal(F)_S^bold("Ab")) :=
     {iota : (S -> G)_bold("Set") | G in op("Obj")(bold("Ab"))}，
   $$
     iota_1 -> iota_2 :=
-    {phi : (op("dom") iota_1 -> op("dom") iota_2)_(bold("Ab")) | phi compose iota_1 = iota_2}.
+    {phi : (op("codom") iota_1 -> op("codom") iota_2)_(bold("Ab")) | phi compose iota_1 = iota_2}.
   $
 
   #align(
     center,
     commutative-diagram(
       node((0,0), $S$),
-      node((0,1), $op("dom") iota_1$),
-      node((1,1), $op("dom") iota_2$),
+      node((0,1), $op("codom") iota_1$),
+      node((1,1), $op("codom") iota_2$),
       arr((0,0), (0,1), $iota_1$),
       arr((0,0), (1,1), $iota_2$, label-pos: right),
       arr((0,1), (1,1), $phi$),
     )
   )
+
   集合 $S$ 上的*自由交换群*定义为 $cal(F)_S^bold("Ab")$ 中的始对象（如果存在的话；后面我们会证明它一定存在）.
   #align(
     center,
@@ -1246,10 +1248,14 @@
   }))
 ]
 
-#example[
-  如果 $A$ 是群 $G$ 的一个子集，$iota$ 满足 $A$ 上的自由群的泛性质，$i : A -> G$ 是包含映射，那么我们有一个唯一的群同态 $phi : F(A) -> G$ 使得下图交换
+#definition[
+  *生成子群*
 
-  #align(center, diagram(spacing: 4cm, {
+  第 $1$ 种定义：
+
+  如果 $A$ 是群 $G$ 的一个子集，$i : A -> G$ 是包含映射，$iota$ 满足 $A$ 上的自由群的泛性质，那么我们有一个唯一的群同态 $phi : F(A) -> G$ 使得下图交换
+
+  #align(center, diagram(spacing: 3cm, {
     let (a, fa, g) = ((0,0), (1,0), (1,1))
     node(a, $A$)
     node(fa, $F(A)$)
@@ -1257,8 +1263,85 @@
 
     edge(a, fa, $iota$, "->")
     edge(a, g, $i$, label-side: right, "->")
-    edge(fa, g, $phi$, "-->")
+    edge(fa, g, $phi$, label-side: left, "-->")
   }))
 
-  我们称 $op(phi)(F(A))$ 为*群 $G$ 中由子集 $A$ 生成的子群*.
+  我们称 $op(phi)(F(A))$ 为*群 $G$ 中由子集 $A$ 生成的子群*，记为 *$angle.l A angle.r$*.
+
+  第 $2$ 种定义：
+
+  定义 $angle.l A angle.r$ 的元素为具有以下形式的对象：
+
+  $
+    a_1 a_2 ... a_3，
+  $
+
+  其中每个 $a_i$ 是 $A$ 中的元素，或 $A$ 中的元素的逆，或幺元.
+
+  第 $3$ 种定义：
+
+  $
+    angle.l A angle.r := sect.big {G "的包含" A "子群"}.
+  $
+]
+
+#proposition[
+  交换群经过群同态输出的像是交换群.
+]
+
+#proposition[
+  给定集合 $A$，定义范畴 *$cal(F)_A$*：
+  $
+    op("Obj")(cal(F)_A) :=
+    {iota : (A -> G)_bold("Set") | G in op("Obj")(bold("Grp"))}，
+  $$
+    iota_1 -> iota_2 :=
+    {phi : (op("codom") iota_1 -> op("codom") iota_2)_(bold("Grp")) | phi compose iota_1 = iota_2}.
+  $
+
+  #align(center, diagram(spacing: 3cm, {
+    let (a, fa, g) = ((0,0), (1,0), (1,1))
+    node(a, $A$)
+    node(fa, $op("codom") iota_1$)
+    node(g, $op("codom") iota_2$)
+
+    edge(a, fa, $iota_1$, "->")
+    edge(a, g, $iota_2$, label-side: right, "->")
+    edge(fa, g, $phi$, label-side: left, "-->")
+  }))
+
+  定义它的子范畴 *$cal(F)_A^bold("Ab")$*：
+  $
+    op("Obj")(cal(F)_A^bold("Ab")) :=
+    {iota : (A -> G)_bold("Set") | G in op("Obj")(bold("Ab"))}，
+  $$
+    iota_1 -> iota_2 :=
+    {phi : (op("codom") iota_1 -> op("codom") iota_2)_(bold("Ab")) | phi compose iota_1 = iota_2}.
+  $
+
+  #align(center, diagram(spacing: 3cm, {
+    let (a, fa, g) = ((0,0), (1,0), (1,1))
+    node(a, $A$)
+    node(fa, $op("codom") iota_1$)
+    node(g, $op("codom") iota_2$)
+
+    edge(a, fa, $iota_1$, "->")
+    edge(a, g, $iota_2$, label-side: right, "->")
+    edge(fa, g, $phi$, label-side: left, "-->")
+  }))
+
+  设 $iota_1$ 和 $iota_2$ 分别是 $cal(F)_A$ 和 $cal(F)_A^bold("Ab")$ 的始对象，且下图交换
+
+  #align(center, diagram(spacing: 3cm, {
+    let (a, fa, g) = ((0,0), (1,0), (1,1))
+    node(a, $A$)
+    node(fa, $F(A)$)
+    node(g, $F^bold("Ab") (A)$)
+
+    edge(a, fa, $iota_1$, "->")
+    edge(a, g, $iota_2$, label-side: right, "->")
+    edge(fa, g, $phi$, label-side: left, "-->")
+  }))
+
+  那么，$phi$ 是满射.
 ]
