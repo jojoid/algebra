@@ -39,7 +39,7 @@
 ]
 
 #proposition[
-  存在无穷多的质数.
+  存在无限多的质数.
 ]
 
 == *整数*
@@ -653,7 +653,7 @@
 === *对称群*
 
 #definition[
-  设 $A in bold("Set")$. $A$ 的*对称群* $S_A$ 定义为群 $"Aut"_bold("Set") (A)$.
+  设 $A in bold("Set")$. $A$ 的*对称群* $S_A$ 定义为群 $(op("Aut")_bold("Set") (A), compose)$.
 ]
 
 #proposition[
@@ -690,21 +690,13 @@
 
 #definition[
   一个群 $G$ 是*循环*的 $:<=>$
-  $exists a in G" "forall b in G" "exists m in ZZ". " b "可以表示为" a^m$，即 $G = {a^m | m in ZZ}$.
+  $exists a in G" "forall b in G" "exists m in ZZ "使得" b "可以表示为" a^m$，即 $G = {a^m | m in ZZ}$.
   其中 $a$ 被称为 $G$ 的一个*生成元*.
 ]
 
 #proposition[
   设 $G$ 是 $n$ 阶循环群，$a$ 是 $G$ 的一个生成元. 则
   $G = {a^0 = e, a, a^2, ..., a^(n-1)}$.
-]
-
-#definition[
-  *无限循环群*
-  $
-    angle.l a angle.r :=
-    {..., a^(-2), a^(-1), a^0 = e, a, a^2, ...}.
-  $
 ]
 
 #proposition[
@@ -964,6 +956,18 @@
   $phi "是一个群同构" <=> phi "是一个双射"$.
 ]
 
+#definition[
+  *无限循环群*
+  
+  称群 $G$ 是*无限循环群*当且仅当 $G tilde.equiv (ZZ, +)$.
+]
+
+#definition[
+  *循环群*
+
+  我们把无限循环群也纳入*循环群*的外延.
+]
+
 #proposition[
   设 $phi : G -> H$ 是一个群同构. 则
 
@@ -982,6 +986,11 @@
 
 #proposition[
   $"群" (QQ, +) tilde.eq.not "群" (QQ_(>0), dot).$
+]
+
+#proposition[
+  $n$ 阶循环群 $tilde.equiv$ $(ZZ slash n ZZ, +)$；
+  无限循环群 $tilde.equiv$ $(ZZ, +)$.
 ]
 
 === *交换群的同态*
@@ -1102,6 +1111,14 @@
 
 #proposition[
   设 $S$ 是一个集合，$F_S$ 是它生成的自由群，函数 $iota : S -> F_S, \'a\' |-> \"a\"$. 则 $iota$ 满足 $S$ 上的自由群的泛性质.
+]
+
+#proposition[
+  $F(emptyset)$ 是平凡群.
+]
+
+#proposition[
+  $F({*})$ $tilde.equiv$ 无限循环群 $tilde.equiv$ $(ZZ, +)$.
 ]
 
 #example[
@@ -1351,9 +1368,29 @@
 ]
 
 #proposition[
-  对于任意循环群 $G$，都存在 $g in G$ 使得 $G = angle.l {g} angle.r$.
+  对于任意循环群 $G$，都存在 $g in G$ 使得 $G = angle.l g angle.r$.
 ]
 
 #proposition[
   群 $G$ 是有限生成的 $<=>$ 存在满群同态 $F({1, ..., n}) ->> G$.
+]
+
+#definition[
+  设 $d in ZZ$. 我们定义
+
+  $
+    bold(d ZZ) := {m in ZZ | m" 是" d "的整数倍"}.
+  $
+]
+
+#proposition[
+  设 $G$ 是 $(ZZ, +)$ 的一个子群. 那么存在 $d in ZZ$ 使得 $G = d ZZ$.
+]
+
+#proposition[
+  $(ZZ, +)$ 的所有非平凡子群都同构于 $(ZZ, +)$.
+]
+
+#proposition[
+  $F({*})$ 的任何子群都是自由群.
 ]
