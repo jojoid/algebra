@@ -1388,7 +1388,7 @@
 ]
 
 #proposition[
-  $(ZZ, +)$ 的所有非平凡子群都同构于 $(ZZ, +)$.
+  $F({*})$ $tilde.equiv$ 无限循环群 $tilde.equiv$ $(ZZ, +)$ 的所有非平凡子群.
 ]
 
 #proposition[
