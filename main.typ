@@ -1170,11 +1170,11 @@
 
   设 $S$ 是一个集合，$H$ 是一个交换群.
   $
-    bold(H^(plus.circle S)) :=
+    H^(plus.circle S) :=
     {alpha : (S -> H)_bold("Set") | {s in S | op(alpha) (s) != e_H} "是有限集"}
   $
 
-  显然 $(H^(plus.circle S), +)$ 是交换群.
+  显然 *$(H^(plus.circle S), +)$* 是交换群.
 ]
 
 #proposition[
@@ -1183,7 +1183,7 @@
     1"," x = s,
     0"," x != s
   )$ .
-  则 *$(ZZ^(plus.circle S), iota)$* 满足 $S$ 上的自由交换群的泛性质.
+  则 *$iota$* 满足 $S$ 上的自由交换群的泛性质.
 ]
 
 == *子群*
