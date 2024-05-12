@@ -33,7 +33,7 @@
 #theorem[
   *强归纳法*
   $
-    forall N subset NN." "0 in N and (forall n in NN". " {0, ... , n} subset N => op("suc")(n) in N)
+    forall N subset NN." "0 in N and (forall n in NN". " {0, ..., n} subset N => op("suc")(n) in N)
     => N = NN.
   $
 ]
@@ -66,7 +66,7 @@
   定义集合
   $
     ZZ slash n ZZ := ZZ slash ("_" eq.triple "_ " (mod n)) =
-    {[0]_n, ... , [n-1]_n}.
+    {[0]_n, ..., [n-1]_n}.
   $
   定义 $ZZ slash n ZZ$ 上的加法
   $
@@ -100,7 +100,7 @@
   $
   其中 $r$ 是唯一使得
   $
-    [r]_(n) = [a]_(n) and r in {0, ... , n - 1}
+    [r]_(n) = [a]_(n) and r in {0, ..., n - 1}
   $
   成立的整数.
 ]
@@ -669,7 +669,7 @@
 ]
 
 #proposition[
-  $forall d in {0, ... , n}" "exists sigma in S_n". " |sigma| = d.$
+  $forall d in {0, ..., n}" "exists sigma in S_n". " |sigma| = d.$
 ]
 
 #proposition[
@@ -696,7 +696,7 @@
 
 #proposition[
   设 $G$ 是 $n$ 阶循环群，$a$ 是 $G$ 的一个生成元. 则
-  $G = {a^0 = e, a, a^2, ... , a^(n-1)}$.
+  $G = {a^0 = e, a, a^2, ..., a^(n-1)}$.
 ]
 
 #definition[
@@ -1156,13 +1156,13 @@
 
   $1.$ *$ZZ^(plus.circle 0)$* $:= {"空元组"}$，令其为平凡群；
 
-  $2.$ 如果 $n > 0$，则 *$ZZ^(plus.circle n)$* $:= underbrace(ZZ plus.circle ... plus.circle ZZ, "n 次")$，并定义其上二元运算 $dot : ZZ^(plus.circle n) times ZZ^(plus.circle n) -> ZZ^(plus.circle n), (x_1, ... , x_n) dot (y_1, ... , y_n) := (x_1 dot y_1, ... , x_n dot y_n)$，这也构成一个群.
+  $2.$ 如果 $n > 0$，则 *$ZZ^(plus.circle n)$* $:= underbrace(ZZ plus.circle ... plus.circle ZZ, "n 次")$，并定义其上二元运算 $dot : ZZ^(plus.circle n) times ZZ^(plus.circle n) -> ZZ^(plus.circle n), (x_1, ..., x_n) dot (y_1, ..., y_n) := (x_1 dot y_1, ..., x_n dot y_n)$，这也构成一个群.
 ]
 
 #proposition[
   $1.$ 设函数 $iota : emptyset -> ZZ^(plus.circle 0)$. 则 *$iota$* 满足 $emptyset$ 上的自由交换群的泛性质.
 
-  $2.$ 设 $n in NN_+$，$S = {1, ... , n}$，函数 $iota : S -> ZZ^(plus.circle n), i |-> (0, ... , 0, underbrace(1, "第 i 位"), 0, ... , 0)$. 则 *$iota$* 满足 $S$ 上的自由交换群的泛性质.
+  $2.$ 设 $n in NN_+$，$S = {1, ..., n}$，函数 $iota : S -> ZZ^(plus.circle n), i |-> (0, ..., 0, underbrace(1, "第 i 位"), 0, ..., 0)$. 则 *$iota$* 满足 $S$ 上的自由交换群的泛性质.
 ]
 
 #definition[
@@ -1344,4 +1344,16 @@
   }))
 
   那么，$phi$ 是满射.
+]
+
+#definition[
+  称一个群 $G$ 是*有限生成*的，当且仅当存在有限集合 $A subset G$ 使得 $G = angle.l A angle.r$.
+]
+
+#proposition[
+  对于任意循环群 $G$，都存在 $g in G$ 使得 $G = angle.l {g} angle.r$.
+]
+
+#proposition[
+  群 $G$ 是有限生成的 $<=>$ 存在满群同态 $F({1, ..., n}) ->> G$.
 ]
