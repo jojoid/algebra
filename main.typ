@@ -956,6 +956,14 @@
   $phi "是一个群同构" <=> phi "是一个双射"$.
 ]
 
+#proposition[
+  设 $phi : G -> H$ 是一个群同构. 则
+
+  $1." "forall g in G". " |phi(g)| = |g|$；
+
+  $2." "G "是交换的" <=> H "是交换的"$.
+]
+
 #definition[
   *无限循环群*
   
@@ -969,11 +977,8 @@
 ]
 
 #proposition[
-  设 $phi : G -> H$ 是一个群同构. 则
-
-  $1." "forall g in G". " |phi(g)| = |g|$；
-
-  $2." "G "是交换的" <=> H "是交换的"$.
+  $n$ 阶循环群 $tilde.equiv$ $(ZZ slash n ZZ, +)$；
+  无限循环群 $tilde.equiv$ $(ZZ, +)$.
 ]
 
 #proposition[
@@ -986,11 +991,6 @@
 
 #proposition[
   $"群" (QQ, +) tilde.eq.not "群" (QQ_(>0), dot).$
-]
-
-#proposition[
-  $n$ 阶循环群 $tilde.equiv$ $(ZZ slash n ZZ, +)$；
-  无限循环群 $tilde.equiv$ $(ZZ, +)$.
 ]
 
 === *交换群的同态*
@@ -1388,7 +1388,12 @@
 ]
 
 #proposition[
-  $F({*})$ $tilde.equiv$ 无限循环群 $tilde.equiv$ $(ZZ, +)$ 的所有非平凡子群.
+  
+  $1.$ $n$ 阶循环群 $tilde.equiv$ $(ZZ slash n ZZ, +)$；
+
+  $2.$ $F({*})$ $tilde.equiv$ 无限循环群 $tilde.equiv$ $(ZZ, +)$ 的所有非平凡子群.
+
+  $3.$ $n$ 阶循环群到无限循环群的群同态有且只有平凡同态.
 ]
 
 #proposition[
