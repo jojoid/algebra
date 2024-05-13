@@ -699,6 +699,14 @@
   $G = {a^0 = e, a, a^2, ..., a^(n-1)}$.
 ]
 
+#definition[
+  *无限循环群*
+  
+  称群 $G$ 是*无限循环群*当且仅当 $G tilde.equiv (ZZ, +)$.
+  
+  显然无限循环群也是循环群.
+]
+
 #proposition[
   设 $G$ 是一个 $n$ 阶群. 则
   $G "是循环的" <=> exists g in G". " |g| = n$.
@@ -964,21 +972,8 @@
   $2." "G "是交换的" <=> H "是交换的"$.
 ]
 
-#definition[
-  *无限循环群*
-  
-  称群 $G$ 是*无限循环群*当且仅当 $G tilde.equiv (ZZ, +)$.
-]
-
-#definition[
-  *循环群*
-
-  我们把无限循环群也纳入*循环群*的外延.
-]
-
 #proposition[
-  $n$ 阶循环群 $tilde.equiv$ $(ZZ slash n ZZ, +)$；
-  无限循环群 $tilde.equiv$ $(ZZ, +)$.
+  $n$ 阶循环群 $tilde.equiv$ $(ZZ slash n ZZ, +)$；无限循环群 $tilde.equiv$ $(ZZ, +)$.
 ]
 
 #proposition[
@@ -1393,9 +1388,44 @@
 
   $2.$ $F({*})$ $tilde.equiv$ 无限循环群 $tilde.equiv$ $(ZZ, +)$ 的所有非平凡子群.
 
-  $3.$ $n$ 阶循环群到无限循环群的群同态有且只有平凡同态.
+  $3.$ 从 $n$ 阶循环群到无限循环群的群同态有且只有平凡同态.
 ]
 
 #proposition[
   $F({*})$ 的任何子群都是自由群.
+]
+
+#proposition[
+  设 $G$ 是某个 $n$ 阶循环群的一个子群. 那么存在 $n$ 的因子 $d$，使得 $G$ 是由 $[d]_n$ 生成的 $n slash d$ 阶循环群.
+]
+
+#proposition[
+  如果 $d_1, d_2$ 都整除 $n$，且 $d_1$ 整除 $d_2$，那么 $angle.l [d_1]_n angle.r supset angle.l [d_2]_n angle.r$.
+]
+
+#example[
+  上个命题中的整除关系和包含关系分别构成了一个*格*结构，且这两个格是同构的. 以 $12$ 阶循环群为例，我们有下图所示的格：
+
+  #align(center, diagram(spacing: 2cm, {
+    let (a, b, c, d, e, f) = ((0,0), (-0.8,0.8), (0.8,0.8), (-0.8,1.8), (0.8,1.8), (0, 2.6))
+    node(a, $1$)
+    node(b, $2$)
+    node(c, $3$)
+    node(d, $4$)
+    node(e, $6$)
+    node(f, $12$)
+
+    edge(a, b)
+    edge(a, c)
+    edge(a, d)
+    edge(a, e)
+    edge(a, f)
+    edge(b, d)
+    edge(b, e)
+    edge(b, f)
+    edge(c, e)
+    edge(c, f)
+    edge(d, f)
+    edge(e, f)
+  }))
 ]
