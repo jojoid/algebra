@@ -345,31 +345,35 @@
 ]
 
 #definition[
-  设 $op(~)$ 是集合 $A$ 上的一个等价关系.
-  
-  定义 *$bold("Set")slash ~$*：
+  *$bold("Set")slash ~$*
 
-  $op("Obj")(bold("Set")slash ~) := 
-  {phi : A -> X |
-  X in op("Obj")(bold("Set")), forall a,b in A". " a op(~) b => phi(a) = phi(b)}$，
+  设 $op(~)$ 是集合 $A$ 上的一个等价关系. 定义范畴 *$bold("Set")slash ~$*：
 
-  $forall phi_1 : A -> X_1, phi_2 : A ->X_2". "
-  phi_1 -> phi_2 :=
-  {sigma : X_1 -> X_2 | sigma compose phi_1 = phi_2}$.
+  $
+    op("Obj")(bold("Set")slash ~) := 
+    {(X, phi) |
+    X in op("Obj")(bold("Set"))"， " phi : (A -> X)_bold("Set")"， " forall a,b in A". " a op(~) b => phi(a) = phi(b)}，
+  $
+
+  $
+    (X_1, phi_1) -> (X_2, phi_2) :=
+    {sigma : (X_1 -> X_2)_bold("Set") | sigma compose phi_1 = phi_2}.
+  $
 ]
 
 #proposition[
-  $pi : A -> A slash ~, x |-> [x]_~$
-  是 $bold("Set")slash ~$ 的始对象，如下图
+  设 $pi : A -> A slash ~, x |-> [x]$.
+  则 $(A slash ~, pi)$ 是 $bold("Set")slash ~$ 的始对象，如下图：
+
   #align(
     center,
     commutative-diagram(
-      node((1, 0), $A$),
+      node((0, 0), $A$),
       node((0, 1), $A slash ~$),
-      node((2, 1), $X$),
-      arr((1, 0), (0, 1), $pi$),
-      arr((1, 0), (2, 1), $phi$, label-pos: right),
-      arr((0, 1), (2, 1), $exists! tilde(phi)$, "dashed"),
+      node((1, 1), $X$),
+      arr((0, 0), (0, 1), $pi$),
+      arr((0, 0), (1, 1), $phi$, label-pos: right),
+      arr((0, 1), (1, 1), $exists! tilde(phi)$, "dashed"),
     )
   )
 ]
@@ -1440,6 +1444,71 @@
 ]
 
 === *商群*
+
+#definition[
+  *兼容*
+
+  设 $G in bold("Grp")$，$~$ 是 $G$ 上的一个等价关系.
+  
+  如果该关系满足：
+
+  $
+    forall a, a'in G". " (a op(~) a') => forall g in G". " (a g op(~) a' g) and (g a op(~) g a')，
+  $
+
+  那么我们称在群 $G$ 中，等价关系 $~$ *兼容*于群结构.
+]
+
+#definition[
+  *商群*
+
+  设 $G in bold("Grp")$，$~$ 是 $G$ 上的一个兼容的等价关系.
+
+  那么我们可以定义二元运算 $circle.filled.tiny : (G slash ~) times (G slash ~) -> (G slash ~),$
+
+  $
+    [a] circle.filled.tiny [b] := [a b].
+  $
+
+  显然这使得 $(G slash ~)$ 成为一个群. 我们称群 $(G slash ~)$ 是群 $G$ 关于等价关系 $~$ 的*商群*.
+]
+
+#definition[
+  *$bold("Grp")slash ~$*
+
+  设 $G in bold("Grp")$，$~$ 是 $G$ 上的一个兼容的等价关系.
+
+  定义范畴 *$bold("Grp")slash ~$*：
+
+  $
+    op("Obj")(bold("Grp")slash ~) := {(G', phi) | G' in op("Obj")(bold("Grp"))"， " phi : (G -> G')_bold("Grp")"， " forall a, b in G". " a op(~) b => phi(a) = phi(b)}，
+  $
+
+  $
+    (G_1, phi_1) -> (G_2, phi_2) := {sigma : (G_1 -> G_2)_bold("Grp") | sigma compose phi_1 = phi_2}.
+  $
+]
+
+#proposition[
+  设 $G in bold("Grp")$，$~$ 是 $G$ 上的一个兼容的等价关系，$pi : G -> G slash ~, x |-> [x]$.
+  
+  则 $(G slash ~, pi)$ 是 $bold("Grp")slash ~$ 的始对象，如下图：
+
+  #align(center, diagram(spacing: 3cm, {
+    let (g, gg, ggg) = ((0,0), (1,0), (1,1))
+    node(g, $G$)
+    node(gg, $bold("Grp")slash ~$)
+    node(ggg, $G'$)
+
+    edge(g, gg, $pi$, "->")
+    edge(g, ggg, $phi$, label-side: right, "->")
+    edge(gg, ggg, $exists ! tilde(phi)$, label-side: left, "-->")
+  }))
+]
+
+=== *陪集*
+
+
 
 下面这玩意乱写的，待修改
 
