@@ -1016,6 +1016,10 @@
   G "是交换的."$
 ]
 
+#proposition[
+  交换群经过群同态输出的像是交换群.
+]
+
 == *自由群*
 
 === *泛性质*
@@ -1023,33 +1027,36 @@
 #definition[
   *自由群*
 
-  给定集合 $S$，定义范畴 *$cal(F)_S$*：
+  给定集合 $S$，定义范畴 $bold(cal(F)_S)$：
+
   $
     op("Obj")(cal(F)_S) :=
-    {iota : (S -> G)_bold("Set") | G in op("Obj")(bold("Grp"))}，
-  $$
-    iota_1 -> iota_2 :=
-    {phi : (op("codom") iota_1 -> op("codom") iota_2)_(bold("Grp")) | phi compose iota_1 = iota_2}.
+    {(G, iota) | G in op("Obj")(bold("Grp")), iota : (S -> G)_bold("Set")}，
+  $
+  
+  $
+    (G_1, iota_1) -> (G_2, iota_2) :=
+    {phi : (G_1 -> G_2)_(bold("Grp")) | phi compose iota_1 = iota_2}.
   $
 
   #align(
     center,
     commutative-diagram(
       node((0,0), $S$),
-      node((0,1), $op("codom") iota_1$),
-      node((1,1), $op("codom") iota_2$),
+      node((0,1), $G_1$),
+      node((1,1), $G_2$),
       arr((0,0), (0,1), $iota_1$),
       arr((0,0), (1,1), $iota_2$, label-pos: right),
       arr((0,1), (1,1), $phi$),
     )
   )
 
-  集合 $S$ 上的*自由群*定义为 $cal(F)_S$ 中的始对象（如果存在的话；后面我们会证明它一定存在）
+  集合 $S$ 上的*自由群* $bold(F(S))$ 定义为 $cal(F)_S$ 中的始对象（如果存在的话；后面我们会证明它一定存在）
   #align(
     center,
     commutative-diagram(
       node((0,0), $S$),
-      node((0,1), $F(S)$),
+      node((0,1), $bold(F(S))$),
       node((1,1), $G$),
       arr((0,0), (0,1), $iota$),
       arr((0,0), (1,1), $f$, label-pos: right),
@@ -1059,7 +1066,7 @@
 ]
 
 #proposition[
-  给定集合 $S$ 和平凡群 ${e}$，则 $({e}, s |-> e : S -> {e})$ 是范畴 $cal(F)_S$ 的终对象.
+  给定集合 $S$ 和平凡群 ${e}$，则 ${e}$ 是范畴 $cal(F)_S$ 的终对象.
 ]
 
 === *具体构造*
@@ -1083,11 +1090,11 @@
 ]
 
 #convention[
-  $1.$ 对于任何字符 $a$，我们可以把 $(a^(-1))^(-1)$ 化简为 $a$；
+  $1.$ 对于任何字符 $a$，我们可以把 $(a^(-1))^(-1)$ *化简*为 $a$；
 
-  $2.$ 对于任何字符串 $x$，其中形如 $a a^(-1)$ 或 $a^(-1) a$ 的部分都能化简为空字符串；
+  $2.$ 对于任何字符串 $x$，其中形如 $a a^(-1)$ 或 $a^(-1) a$ 的部分都能*化简*为空字符串；
 
-  $3.$ 我们不区分字符以及字符串的化简前后的形式.
+  $3.$ 我们*不区分*字符以及字符串的化简前后的形式.
 ]
 
 #definition[
@@ -1099,13 +1106,13 @@
   $
     dot : T^* times T^* -> T^*, (x, y) |-> x y，
   $
-  即字符串连接.
+  即*字符串连接*.
 
   显然，$(T^*, dot)$ 构成一个群结构（乘法符合结合律；有幺元，即空字符串；每个字符串都有逆元），称该群为集合 $S$ 生成的*自由群*.
 ]
 
 #proposition[
-  设 $S$ 是一个集合，$F_S$ 是它生成的自由群，函数 $iota : S -> F_S, \'a\' |-> \"a\"$. 则 $iota$ 满足 $S$ 上的自由群的泛性质.
+  设 $S$ 是一个集合，$F_S$ 是它生成的自由群，函数 $iota : S -> F_S, \'a\' |-> \"a\"$. 则 $(F_S, iota)$ 满足 $S$ 上的自由群的泛性质.
 ]
 
 #proposition[
@@ -1126,33 +1133,36 @@
 #definition[
   *自由交换群*
 
-  给定集合 $S$，定义范畴 *$cal(F)_S^bold("Ab")$*：
+  给定集合 $S$，定义范畴 $bold(cal(F)_S^bold("Ab"))$：
+
   $
     op("Obj")(cal(F)_S^bold("Ab")) :=
-    {iota : (S -> G)_bold("Set") | G in op("Obj")(bold("Ab"))}，
-  $$
-    iota_1 -> iota_2 :=
-    {phi : (op("codom") iota_1 -> op("codom") iota_2)_(bold("Ab")) | phi compose iota_1 = iota_2}.
+    {(G, iota) | G in op("Obj")(bold("Ab")), iota : (S -> G)_bold("Set")}，
+  $
+  
+  $
+    (G_1, iota_1) -> (G_2, iota_2) :=
+    {phi : (G_1 -> G_2)_(bold("Ab")) | phi compose iota_1 = iota_2}.
   $
 
   #align(
     center,
     commutative-diagram(
       node((0,0), $S$),
-      node((0,1), $op("codom") iota_1$),
-      node((1,1), $op("codom") iota_2$),
+      node((0,1), $G_1$),
+      node((1,1), $G_2$),
       arr((0,0), (0,1), $iota_1$),
       arr((0,0), (1,1), $iota_2$, label-pos: right),
       arr((0,1), (1,1), $phi$),
     )
   )
 
-  集合 $S$ 上的*自由交换群*定义为 $cal(F)_S^bold("Ab")$ 中的始对象（如果存在的话；后面我们会证明它一定存在）.
+  集合 $S$ 上的*自由交换群* $bold(F^bold("Ab") (S))$ 定义为 $cal(F)_S^bold("Ab")$ 中的始对象（如果存在的话；后面我们会证明它一定存在）.
   #align(
     center,
     commutative-diagram(
       node((0,0), $S$),
-      node((0,1), $F^bold("Ab") (S)$),
+      node((0,1), $bold(F^bold("Ab") (S))$),
       node((1,1), $G$),
       arr((0,0), (0,1), $iota$),
       arr((0,0), (1,1), $f$, label-pos: right),
@@ -1168,25 +1178,27 @@
 
   $1.$ *$ZZ^(plus.circle 0)$* $:= {"空元组"}$，令其为平凡群；
 
-  $2.$ 如果 $n > 0$，则 *$ZZ^(plus.circle n)$* $:= underbrace(ZZ plus.circle ... plus.circle ZZ, "n 次")$，并定义其上二元运算 $dot : ZZ^(plus.circle n) times ZZ^(plus.circle n) -> ZZ^(plus.circle n), (x_1, ..., x_n) dot (y_1, ..., y_n) := (x_1 dot y_1, ..., x_n dot y_n)$，这也构成一个群.
+  $2.$ 如果 $n > 0$，则 *$ZZ^(plus.circle n)$* $:= underbrace(ZZ plus.circle ... plus.circle ZZ, "n 次")$，并定义其上二元运算 $+ : ZZ^(plus.circle n) times ZZ^(plus.circle n) -> ZZ^(plus.circle n), (x_1, ..., x_n) + (y_1, ..., y_n) := (x_1 + y_1, ..., x_n + y_n)$.
+  
+  显然，这构成一个群.
 ]
 
 #proposition[
-  $1.$ 设函数 $iota : emptyset -> ZZ^(plus.circle 0)$. 则 *$iota$* 满足 $emptyset$ 上的自由交换群的泛性质.
+  $1.$ 设函数 $iota : emptyset -> ZZ^(plus.circle 0)$. 则 $(ZZ^(plus.circle 0), iota)$ 满足 $emptyset$ 上的自由交换群的泛性质.
 
-  $2.$ 设 $n in NN_+$，$S = {1, ..., n}$，函数 $iota : S -> ZZ^(plus.circle n), i |-> (0, ..., 0, underbrace(1, "第 i 位"), 0, ..., 0)$. 则 *$iota$* 满足 $S$ 上的自由交换群的泛性质.
+  $2.$ 设 $n in NN_+$，$S = {1, ..., n}$，函数 $iota : S -> ZZ^(plus.circle n), i |-> (0, ..., 0, underbrace(1, "第 i 位"), 0, ..., 0)$. 则 $(ZZ^(plus.circle n), iota)$ 满足 $S$ 上的自由交换群的泛性质.
 ]
 
 #definition[
   $bold(H^(plus.circle S))$
 
-  设 $S$ 是一个集合，$H$ 是一个交换群.
+  设 $S$ 是一个集合，$(H, +)$ 是一个交换群.
   $
-    H^(plus.circle S) :=
+    bold(H^(plus.circle S)) :=
     {alpha : (S -> H)_bold("Set") | {s in S | op(alpha) (s) != e_H} "是有限集"}
   $
 
-  显然 *$(H^(plus.circle S), +)$* 是交换群.
+  显然 $bold((H^(plus.circle S), +))$ 是交换群.
 ]
 
 #proposition[
@@ -1195,10 +1207,12 @@
     1"," x = s,
     0"," x != s
   )$ .
-  则 *$iota$* 满足 $S$ 上的自由交换群的泛性质.
+  则 $(ZZ^(plus.circle S), iota)$ 满足 $S$ 上的自由交换群的泛性质.
 ]
 
 == *子群*
+
+=== *定义和例子*
 
 #definition[
   *子群*
@@ -1235,15 +1249,29 @@
   设 $phi : G -> G'$ 是一个群同态. 那么
 
   $1.$ $op("ker") phi$ 是 $G$ 的一个子群.
+
+  $2.$ 对于 $G'$ 的任何子群 $H'$，$phi^(-1) (H')$ 是 $G$ 的一个子群.
   
-  $2.$ 对于 $G$ 的任何子群 $H$，$op(phi)(H)$ 是 $G'$ 的一个子群.
+  $3.$ 对于 $G$ 的任何子群 $H$，$op(phi)(H)$ 是 $G'$ 的一个子群.
 ]
 
 #import "@preview/fletcher:0.4.4" as fletcher: diagram, node, edge
 
 #proposition[
   设 $phi : G -> G'$ 是一个群同态.
-  定义一个范畴 $cal(C)$，$op("Obj")(cal(C)) := {alpha : (K -> G)_bold("Grp") | K in bold("Grp"), phi compose alpha = "平凡同态" op(0) : K -> G' ("即" op(alpha)(K) subset op("ker")phi)}$，$forall alpha : (K -> G)_bold("Grp"), beta : (L -> G)_bold("Grp")". " alpha -> beta := {gamma : (K -> L)_bold("Grp") | alpha = beta compose gamma}$. 则包含函数 $i : op("ker") phi -> G$ 是范畴 $cal(C)$ 的终对象，如下图
+  定义一个范畴 $cal(C)$：
+  
+  $
+    op("Obj")(cal(C)) := {(K, alpha) | K in op("Obj")(bold("Grp"))"， " alpha : (K -> G)_bold("Grp")"， " op(alpha)(K) subset op("ker")phi}，
+  $
+
+  $
+    (K, alpha) -> (L, beta) := {gamma : (K -> L)_bold("Grp") | alpha = beta compose gamma}.
+  $
+
+  设 $i : op("ker") phi -> G$ 是包含映射.
+    
+  则 $(op("ker") phi, i)$ 是范畴 $cal(C)$ 的终对象，如下图：
 
   #align(center, diagram(spacing: 2cm, {
     let (k, g, gt, ker) = ((-1,0), (0,0), (1,0), (0,1))
@@ -1265,7 +1293,7 @@
 
   第 $1$ 种定义：
 
-  如果 $A$ 是群 $G$ 的一个子集，$i : A -> G$ 是包含映射，$iota$ 满足 $A$ 上的自由群的泛性质，那么我们有一个唯一的群同态 $phi : F(A) -> G$ 使得下图交换
+  如果 $A$ 是群 $G$ 的一个子集，$i : A -> G$ 是包含映射，$(F(A), iota)$ 满足 $A$ 上的自由群的泛性质，那么我们有一个唯一的群同态 $phi : F(A) -> G$ 使得下图交换
 
   #align(center, diagram(spacing: 3cm, {
     let (a, fa, g) = ((0,0), (1,0), (1,1))
@@ -1288,78 +1316,17 @@
     a_1 a_2 ... a_3，
   $
 
-  其中每个 $a_i$ 是 $A$ 中的元素，或 $A$ 中的元素的逆，或幺元.
+  其中每个 $a_i$ 是 $A$ 中的元素，或 $A$ 中的元素的逆，或 $G$ 的幺元.
 
   第 $3$ 种定义：
 
   $
-    angle.l A angle.r := sect.big {G "的包含" A "子群"}.
+    angle.l A angle.r := sect.big {G "的包含" A "的子群"}.
   $
-]
-
-#proposition[
-  交换群经过群同态输出的像是交换群.
-]
-
-#proposition[
-  给定集合 $A$，定义范畴 *$cal(F)_A$*：
-  $
-    op("Obj")(cal(F)_A) :=
-    {iota : (A -> G)_bold("Set") | G in op("Obj")(bold("Grp"))}，
-  $$
-    iota_1 -> iota_2 :=
-    {phi : (op("codom") iota_1 -> op("codom") iota_2)_(bold("Grp")) | phi compose iota_1 = iota_2}.
-  $
-
-  #align(center, diagram(spacing: 3cm, {
-    let (a, fa, g) = ((0,0), (1,0), (1,1))
-    node(a, $A$)
-    node(fa, $op("codom") iota_1$)
-    node(g, $op("codom") iota_2$)
-
-    edge(a, fa, $iota_1$, "->")
-    edge(a, g, $iota_2$, label-side: right, "->")
-    edge(fa, g, $phi$, label-side: left, "-->")
-  }))
-
-  定义它的子范畴 *$cal(F)_A^bold("Ab")$*：
-  $
-    op("Obj")(cal(F)_A^bold("Ab")) :=
-    {iota : (A -> G)_bold("Set") | G in op("Obj")(bold("Ab"))}，
-  $$
-    iota_1 -> iota_2 :=
-    {phi : (op("codom") iota_1 -> op("codom") iota_2)_(bold("Ab")) | phi compose iota_1 = iota_2}.
-  $
-
-  #align(center, diagram(spacing: 3cm, {
-    let (a, fa, g) = ((0,0), (1,0), (1,1))
-    node(a, $A$)
-    node(fa, $op("codom") iota_1$)
-    node(g, $op("codom") iota_2$)
-
-    edge(a, fa, $iota_1$, "->")
-    edge(a, g, $iota_2$, label-side: right, "->")
-    edge(fa, g, $phi$, label-side: left, "-->")
-  }))
-
-  设 $iota_1$ 和 $iota_2$ 分别是 $cal(F)_A$ 和 $cal(F)_A^bold("Ab")$ 的始对象，且下图交换
-
-  #align(center, diagram(spacing: 3cm, {
-    let (a, fa, g) = ((0,0), (1,0), (1,1))
-    node(a, $A$)
-    node(fa, $F(A)$)
-    node(g, $F^bold("Ab") (A)$)
-
-    edge(a, fa, $iota_1$, "->")
-    edge(a, g, $iota_2$, label-side: right, "->")
-    edge(fa, g, $phi$, label-side: left, "-->")
-  }))
-
-  那么，$phi$ 是满射.
 ]
 
 #definition[
-  称一个群 $G$ 是*有限生成*的，当且仅当存在有限集合 $A subset G$ 使得 $G = angle.l A angle.r$.
+  称一个群 $G$ 是*有限生成*的，当且仅当存在有限子集 $A subset G$ 使得 $G = angle.l A angle.r$.
 ]
 
 #proposition[
@@ -1428,4 +1395,107 @@
     edge(d, f)
     edge(e, f)
   }))
+]
+
+#proposition[
+  设 $G$ 是一个群，$g in G$. 则指数映射 $epsilon_g : ZZ -> G$ 的像是一个循环群.
+]
+
+=== *单态射*
+
+#proposition[
+  设 $phi : (G -> G')_bold("Grp")$. 则以下命题等价：
+
+  $1.$ $phi$ 是单态射；
+
+  $2.$ $op(ker) phi = {e_G}$；
+
+  $3.$ $phi$ 是单射.
+]
+
+#proposition[
+  设 $phi : (G -> G')_bold("Grp")$. 则 $phi$ 是单态射 $=>$ $phi$ 有左逆.
+]
+
+== *商群*
+
+=== *正规子群*
+
+#definition[
+  *正规子群*
+
+  称群 $G$ 的一个子群 $N$ 是*正规的*，当且仅当
+
+  $
+    forall g in G". " g N g^(-1) subset N.
+  $
+]
+
+#proposition[
+  交换群的任何子群都是正规的.
+]
+
+#lemma[
+  设 $phi : (G -> G')_bold("Grp")$. 则 $op("ker") phi$ 是 $G$ 的正规子群.
+]
+
+=== *商群*
+
+下面这玩意乱写的，待修改
+
+#proposition[
+  给定集合 $A$，定义范畴 *$cal(F)_A$*：
+  $
+    op("Obj")(cal(F)_A) :=
+    {iota : (A -> G)_bold("Set") | G in op("Obj")(bold("Grp"))}，
+  $$
+    iota_1 -> iota_2 :=
+    {phi : (op("codom") iota_1 -> op("codom") iota_2)_(bold("Grp")) | phi compose iota_1 = iota_2}.
+  $
+
+  #align(center, diagram(spacing: 3cm, {
+    let (a, fa, g) = ((0,0), (1,0), (1,1))
+    node(a, $A$)
+    node(fa, $op("codom") iota_1$)
+    node(g, $op("codom") iota_2$)
+
+    edge(a, fa, $iota_1$, "->")
+    edge(a, g, $iota_2$, label-side: right, "->")
+    edge(fa, g, $phi$, label-side: left, "-->")
+  }))
+
+  定义它的子范畴 *$cal(F)_A^bold("Ab")$*：
+  $
+    op("Obj")(cal(F)_A^bold("Ab")) :=
+    {iota : (A -> G)_bold("Set") | G in op("Obj")(bold("Ab"))}，
+  $$
+    iota_1 -> iota_2 :=
+    {phi : (op("codom") iota_1 -> op("codom") iota_2)_(bold("Ab")) | phi compose iota_1 = iota_2}.
+  $
+
+  #align(center, diagram(spacing: 3cm, {
+    let (a, fa, g) = ((0,0), (1,0), (1,1))
+    node(a, $A$)
+    node(fa, $op("codom") iota_1$)
+    node(g, $op("codom") iota_2$)
+
+    edge(a, fa, $iota_1$, "->")
+    edge(a, g, $iota_2$, label-side: right, "->")
+    edge(fa, g, $phi$, label-side: left, "-->")
+  }))
+
+  设 $iota_1$ 和 $iota_2$ 分别是 $cal(F)_A$ 和 $cal(F)_A^bold("Ab")$ 的始对象，且下图交换
+
+  #align(center, diagram(spacing: 3cm, {
+    let (a, fa, g) = ((0,0), (1,0), (1,1))
+    node(a, $A$)
+    node(fa, $F(A)$)
+    node(g, $F^bold("Ab") (A)$)
+
+    edge(a, fa, $iota_1$, "->")
+    edge(a, g, $iota_2$, label-side: right, "->")
+    edge(fa, g, $phi$, label-side: left, "-->")
+  }))
+
+  那么，$phi$ 是满射.
 ]
