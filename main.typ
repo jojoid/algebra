@@ -49,7 +49,7 @@
   
   设 $n in ZZ_+$. 定义 $ZZ$ 上的二元关系
   $
-    "_" eq.triple "_ " (mod n) : ZZ times ZZ -> "Propo",
+    "_" eq.triple "_ " (mod n) : ZZ times ZZ -> bold("Propo"),
     (a,b) |-> n | (a - b)
   $
 ]
@@ -1288,7 +1288,7 @@
     edge(g, gt, $phi$,label-side: right, "->")
     edge(k, gt, bend: +30deg, $0$, "->")
     edge(ker, g, $i$, "hook->")
-    edge(k, ker, $exists ! macron(alpha)$, label-side: right, "-->")
+    edge(k, ker, $macron(alpha)$, label-side: right, "-->")
   }))
 ]
 
@@ -1310,7 +1310,7 @@
     edge(fa, g, $phi$, label-side: left, "-->")
   }))
 
-  我们称 $op(phi)(F(A))$ 为*群 $G$ 中由子集 $A$ 生成的子群*，记为 *$angle.l A angle.r$*.
+  我们称 $op(phi)(F(A))$ 为群 $G$ 中由子集 $A$ *生成*的子群，记为 *$angle.l A angle.r$*.
 
   第 $2$ 种定义：
 
@@ -1329,6 +1329,33 @@
   $
 ]
 
+#proposition[
+  设 $A$ 是交换群 $G$ 的一个子集，$i : A -> G$ 是包含映射，$(F(A), iota_1)$ 和 $(F^bold("Ab") (A), iota_2)$ 分别是范畴 $cal(F)_A$ 和 $cal(F)_A^bold("Ab")$ 的始对象，$phi_1 : (F(A), iota_1) -> (G, i)$，$phi_2 : (F^bold("Ab") (A), iota_2) -> (G, i)$，$phi_3 : (F(A), iota_1) -> (F^bold("Ab") (A), iota_2)$. 那么我们有
+
+  $
+    phi_2 compose phi_3 = phi_1.
+  $
+]
+
+#proposition[
+  设 $A$ 是交换群 $G$ 的一个子集，$i : A -> G$ 是包含映射，$(F^bold("Ab") (A), iota)$ 是范畴 $cal(F)_A^bold("Ab")$ 的始对象，下图交换：
+
+  $
+    #align(center, diagram(spacing: 3cm, {
+    let (a, fa, g) = ((0,0), (1,0), (1,1))
+    node(a, $A$)
+    node(fa, $F^bold("Ab") (A)$)
+    node(g, $G$)
+
+    edge(a, fa, $iota$, "->")
+    edge(a, g, $i$, label-side: right, "->")
+    edge(fa, g, $phi$, label-side: left, "-->")
+  }))
+  $
+
+  那么，$phi(F^bold("Ab") (A))$ 是群 $G$ 中由子集 $A$ 生成的子群.
+]
+
 #definition[
   称一个群 $G$ 是*有限生成*的，当且仅当存在有限子集 $A subset G$ 使得 $G = angle.l A angle.r$.
 ]
@@ -1338,7 +1365,29 @@
 ]
 
 #proposition[
-  群 $G$ 是有限生成的 $<=>$ 存在满群同态 $F({1, ..., n}) ->> G$.
+  设 $G$ 是一个群. 则以下 $2$ 个命题等价：
+
+  $1.$ $G$ 是有限生成的.
+  
+  $2.$ 存在满群同态 $F({1, ..., n}) ->> G$（$n >= 0$）.
+]
+
+#proposition[
+  设 $G$ 是一个交换群. 则以下 $2$ 个命题等价：
+
+  $1.$ $G$ 是有限生成的.
+  
+  $2.$ 存在满群同态 $F({1, ..., n}) ->> G$（$n >= 0$）.
+
+  $3.$ 存在满群同态 $F^bold("Ab") ({1, ..., n}) ->> G$（$n >= 0$）.
+]
+
+#proposition[
+  设 $A = {\' 1 \' , ..., \' n \'}$（$n >= 0$），$G$ 是一个群且 $|G| >= n$，$phi : F(A) -> G$ 是一个满群同态. 那么 $|phi({\" 1 \", ..., \" n \"})|$ *不一定*等于 $n$.
+]
+
+#proposition[
+  设 $A = {1 , ..., n}$（$n >= 0$），$G$ 是一个交换群且 $|G| >= n$，$phi : F^bold("Ab") (A) -> G$ 是一个满群同态. 那么 $|phi({(1,0,...,0), (0,1,...,0), ..., (0,0, ..., 1)})|$ *不一定*等于 $n$.
 ]
 
 #definition[
@@ -1423,26 +1472,6 @@
 
 == *商群*
 
-=== *正规子群*
-
-#definition[
-  *正规子群*
-
-  称群 $G$ 的一个子群 $N$ 是*正规的*，当且仅当
-
-  $
-    forall g in G". " g N g^(-1) subset N.
-  $
-]
-
-#proposition[
-  交换群的任何子群都是正规的.
-]
-
-#lemma[
-  设 $phi : (G -> G')_bold("Grp")$. 则 $op("ker") phi$ 是 $G$ 的正规子群.
-]
-
 === *商群*
 
 #definition[
@@ -1453,7 +1482,7 @@
   如果该关系满足：
 
   $
-    forall a, a'in G". " (a op(~) a') => forall g in G". " (a g op(~) a' g) and (g a op(~) g a')，
+    forall a, a'in G". " (a op(~) a') => forall g in G". " (g a op(~) g a') and (a g op(~) a' g)，
   $
 
   那么我们称在群 $G$ 中，等价关系 $~$ *兼容*于群结构.
@@ -1502,69 +1531,63 @@
 
     edge(g, gg, $pi$, "->")
     edge(g, ggg, $phi$, label-side: right, "->")
-    edge(gg, ggg, $exists ! tilde(phi)$, label-side: left, "-->")
+    edge(gg, ggg, $tilde(phi)$, label-side: left, "-->")
   }))
+]
+
+#proposition[
+  给定集合 $A$，设 $(F(A), iota_1)$ 和 $(F^bold("Ab") (A), iota_2)$ 分别是范畴 $cal(F)_A$ 和 $cal(F)_A^bold("Ab")$ 的始对象.
+  
+  定义 $F(A)$ 上的一个等价关系：
+  
+  $
+    ~ : F(A) times F(A) -> bold("Propo"),
+  $
+
+  $
+    a op(~) b :<=> "字符串" a "和 " b "中的字符种类和数量相同，唯一可能的不同是字符的顺序".
+  $
+
+  则我们有：
+  
+  $1.$ $~$ 兼容于 $F(A)$ 的群结构.
+
+  $2.$ 存在同构 $alpha : F^bold("Ab") (A) ->^tilde F(A) slash ~$ 使得下图交换：
+
+  #align(center, diagram(spacing: 3cm, {
+    let (a, fa, faq, fab) = ((-1,0), (0,0), (1,0), (0,1))
+    node(a, $A$)
+    node(fa, $F(A)$)
+    node(faq, $F(A) slash ~$)
+    node(fab, $F^bold("Ab") (A)$)
+
+    edge(a, fa, $iota_1$, "->")
+    edge(a, fab, $iota_2$, label-side: right, "->")
+    edge(fa, faq, $pi$, "->")
+    edge(fa, fab, $phi$, "-->")
+    edge(faq, fab, $alpha$,label-side: left , "->")
+  }))
+]
+
+=== *正规子群*
+
+#definition[
+  *正规子群*
+
+  称群 $G$ 的一个子群 $N$ 是*正规的*，当且仅当
+
+  $
+    forall g in G". " g N g^(-1) subset N.
+  $
+]
+
+#proposition[
+  交换群的任何子群都是正规的.
+]
+
+#lemma[
+  设 $phi : (G -> G')_bold("Grp")$. 则 $op("ker") phi$ 是 $G$ 的正规子群.
 ]
 
 === *陪集*
 
-
-
-下面这玩意乱写的，待修改
-
-#proposition[
-  给定集合 $A$，定义范畴 *$cal(F)_A$*：
-  $
-    op("Obj")(cal(F)_A) :=
-    {iota : (A -> G)_bold("Set") | G in op("Obj")(bold("Grp"))}，
-  $$
-    iota_1 -> iota_2 :=
-    {phi : (op("codom") iota_1 -> op("codom") iota_2)_(bold("Grp")) | phi compose iota_1 = iota_2}.
-  $
-
-  #align(center, diagram(spacing: 3cm, {
-    let (a, fa, g) = ((0,0), (1,0), (1,1))
-    node(a, $A$)
-    node(fa, $op("codom") iota_1$)
-    node(g, $op("codom") iota_2$)
-
-    edge(a, fa, $iota_1$, "->")
-    edge(a, g, $iota_2$, label-side: right, "->")
-    edge(fa, g, $phi$, label-side: left, "-->")
-  }))
-
-  定义它的子范畴 *$cal(F)_A^bold("Ab")$*：
-  $
-    op("Obj")(cal(F)_A^bold("Ab")) :=
-    {iota : (A -> G)_bold("Set") | G in op("Obj")(bold("Ab"))}，
-  $$
-    iota_1 -> iota_2 :=
-    {phi : (op("codom") iota_1 -> op("codom") iota_2)_(bold("Ab")) | phi compose iota_1 = iota_2}.
-  $
-
-  #align(center, diagram(spacing: 3cm, {
-    let (a, fa, g) = ((0,0), (1,0), (1,1))
-    node(a, $A$)
-    node(fa, $op("codom") iota_1$)
-    node(g, $op("codom") iota_2$)
-
-    edge(a, fa, $iota_1$, "->")
-    edge(a, g, $iota_2$, label-side: right, "->")
-    edge(fa, g, $phi$, label-side: left, "-->")
-  }))
-
-  设 $iota_1$ 和 $iota_2$ 分别是 $cal(F)_A$ 和 $cal(F)_A^bold("Ab")$ 的始对象，且下图交换
-
-  #align(center, diagram(spacing: 3cm, {
-    let (a, fa, g) = ((0,0), (1,0), (1,1))
-    node(a, $A$)
-    node(fa, $F(A)$)
-    node(g, $F^bold("Ab") (A)$)
-
-    edge(a, fa, $iota_1$, "->")
-    edge(a, g, $iota_2$, label-side: right, "->")
-    edge(fa, g, $phi$, label-side: left, "-->")
-  }))
-
-  那么，$phi$ 是满射.
-]
