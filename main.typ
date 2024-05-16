@@ -1228,7 +1228,11 @@
 ]
 
 #proposition[
-  设 $(G, dot)$ 是一个群，$H$ 是 $G$ 的一个非空子集. 则 $(H, dot)$ 是 $(G, dot)$ 的一个子群 $<=> forall a, b in H". "a b^(-1) in H$.
+  设 $(G, dot)$ 是一个群，$H$ 是 $G$ 的一个非空子集. 则 $(H, dot)$ 是 $(G, dot)$ 的一个子群当且仅当满足以下条件：
+  
+  $1.$ $H$ 对 $dot$ 封闭，即 $forall a, b in H". " a dot b in H and b dot a in H$；
+
+  $2.$ $forall a in H". " a^(-1) in H$.
 ]
 
 #lemma[
@@ -1569,6 +1573,162 @@
   }))
 ]
 
+=== *陪集*
+
+#definition[
+  *左陪集，右陪集*
+
+  设 $H subset G$ 是群 $G$ 的一个子群，$a in G$. 我们称集合 $bold(a H)$ 为 $H$ 在 $G$ 中的一个*左陪集*，称集合 $bold(H a)$ 为 $H$ 在 $G$ 中的一个*右陪集*.
+]
+
+#proposition[
+  设 $~_L$ 是群 $G$ 上的一个等价关系，满足：
+
+  $
+    forall a, b in G". " a op(~_L) b => forall g in G". " g a op(~_L) g b.
+  $
+
+  那么我们有：
+
+  $1.$ $[e_G]$ 是 $G$ 的一个子群.
+
+  $2.$ $(a op(~_L) b) <=> (a^(-1) b in [e_G]) <=> (a [e_G] = b [e_G])$.
+]
+
+#proposition[
+  设 $~_R$ 是群 $G$ 上的一个等价关系，满足：
+
+  $
+    forall a, b in G". " a op(~_R) b => forall g in G". " a g op(~_R) b g.
+  $
+
+  那么我们有：
+
+  $1.$ $[e_G]$ 是 $G$ 的一个子群.
+
+  $2.$ $(a op(~_R) b) <=> (a b^(-1) in [e_G]) <=> ([e_G] a = [e_G] b)$.
+]
+
+#proposition[
+  设 $H subset G$ 是群 $G$ 的一个子群. 定义群 $G$ 上的一个二元关系 
+  
+  $
+    ~_L : G times G -> bold("Propo"),
+  $
+
+  $
+    a op(~_L) b :<=> a^(-1) b in H.
+  $
+
+  那么我们有：
+
+  $1.$ $~_L$ 是一个等价关系.
+
+  $2.$ $H = [e_G]$.
+
+  $3.$ $forall a, b in G". " a op(~_L) b => forall g in G". " g a op(~_L) g b$.
+]
+
+#proposition[
+  设 $H subset G$ 是群 $G$ 的一个子群. 定义群 $G$ 上的一个二元关系 
+  
+  $
+    ~_R : G times G -> bold("Propo"),
+  $
+
+  $
+    a op(~_R) b :<=> a b^(-1) in H.
+  $
+
+  那么我们有：
+
+  $1.$ $~_R$ 是一个等价关系.
+
+  $2.$ $H = [e_G]$.
+
+  $3.$ $forall a, b in G". " a op(~_R) b => forall g in G". " a g op(~_R) b g$.
+]
+
+#proposition[
+  设 $G$ 是一个群. 那么我们可以在
+  
+  群 $G$ 的所有子群 $H$ 的集合
+  
+  和
+  
+  群 $G$ 上所有满足 $forall a, b in G". " a op(~_L) b => forall g in G". " g a op(~_L) g b$ 的等价关系 $~_L$ 的集合
+  
+  之间建立一对互逆映射：
+
+  $
+    H |-> (a op(~_L) b :<=> a^(-1) b in H) " 和" ~_L |-> (H := [e_G]).
+  $
+]
+
+#proposition[
+  设 $G$ 是一个群. 那么我们可以在
+  
+  群 $G$ 的所有子群 $H$ 的集合
+  
+  和
+  
+  群 $G$ 上所有满足 $forall a, b in G". " a op(~_R) b => forall g in G". " a g op(~_R) b g$ 的等价关系 $~_R$ 的集合
+  
+  之间建立一对互逆映射：
+
+  $
+    H |-> (a op(~_R) b :<=> a b^(-1) in H) " 和" ~_R |-> (H := [e_G]).
+  $
+]
+
+#proposition[
+  设 $~_L$ 和 $~_R$ 是群 $G$ 上的两个等价关系，分别满足
+  
+  $
+    forall a, b in G". " a op(~_L) b => forall g in G". " g a op(~_L) g b
+  $
+
+  和
+
+  $
+    forall a, b in G". " a op(~_R) b => forall g in G". " a g op(~_R) b g.
+  $
+  
+  那么我们有：
+
+  $
+    [e_G]_(~_L) = [e_G]_(~_R).
+  $
+]
+
+#proposition[
+  设 $~_L$ 是群 $G$ 上的一个等价关系，满足：
+
+  $
+    forall a, b in G". " a op(~_L) b => forall g in G". " g a op(~_L) g b.
+  $
+
+  那么我们有：
+
+  $
+    G slash ~_L = {g [e_G] | g in G}.
+  $
+]
+
+#proposition[
+  设 $~_R$ 是群 $G$ 上的一个等价关系，满足：
+
+  $
+    forall a, b in G". " a op(~_R) b => forall g in G". " a g op(~_R) b g.
+  $
+
+  那么我们有：
+
+  $
+    G slash ~_R = {[e_G] g | g in G}.
+  $
+]
+
 === *正规子群*
 
 #definition[
@@ -1588,6 +1748,3 @@
 #lemma[
   设 $phi : (G -> G')_bold("Grp")$. 则 $op("ker") phi$ 是 $G$ 的正规子群.
 ]
-
-=== *陪集*
-
