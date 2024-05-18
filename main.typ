@@ -1847,3 +1847,7 @@
     edge(gh, gs, $tilde(phi)$, label-side: right, "-->")
   }))
 ]
+
+#proposition[
+  $n ZZ$ 是 $ZZ$ 的正规子群.
+]
