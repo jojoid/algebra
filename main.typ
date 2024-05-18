@@ -1780,6 +1780,6 @@
   }))
 ]
 
-#proposition[
+#example[
   $n ZZ$ 是 $ZZ$ 的正规子群.
 ]
