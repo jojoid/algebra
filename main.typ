@@ -14,6 +14,26 @@
   ),
 )
 
+= *集合论*
+
+#theorem[
+  设 $~$ 是 $A$ 上的一个等价关系，$f : A -> B$ 是一个函数，满足 $forall a, a' in A". " a op(~) a' => f(a) = f(a')$. 那么 $f$ 能分解为：
+
+  #align(center, commutative-diagram(
+    node((0,0), $A$),
+    node((0,1), $(A slash ~)$),
+    node((0,2), $op("im") f$),
+    node((0,3), $B$),
+
+    arr((0,0), (0,3), $f$, curve: 15deg),
+    arr((0,0), (0,1), $pi$, label-pos: right, "surj"),
+    arr((0,1), (0,2), $tilde(f)$, label-pos: right),
+    arr((0,2), (0,3), $i$, label-pos: right, "inj")
+  ))
+
+  其中第 $1$ 个满射定义为 $pi(a) := [a]$，第 $2$ 个双射定义为 $tilde(f) ([a]) := f(a)$，第 $3$ 个单射 $i$ 定义为包含映射.
+] 
+
 = *初等数论*
 
 == *自然数*
@@ -1530,7 +1550,7 @@
   #align(center, diagram(spacing: 3cm, {
     let (g, gg, ggg) = ((0,0), (1,0), (1,1))
     node(g, $G$)
-    node(gg, $bold("Grp")slash ~$)
+    node(gg, $G slash ~$)
     node(ggg, $G'$)
 
     edge(g, gg, $pi$, "->")
@@ -1747,4 +1767,81 @@
 
 #lemma[
   设 $phi : (G -> G')_bold("Grp")$. 则 $op("ker") phi$ 是 $G$ 的正规子群.
+]
+
+=== *以正规子群为模的商群*
+
+#proposition[
+  设 $H$ 是群 $G$ 的一个子群.
+  
+  由前述，我们可以定义两个等价关系 $a op(~_L) b :<=> a^(-1) b in H$ 和 $a op(~_R) b :<=> a b^(-1) in H$.
+  
+  并且我们有两个商群：
+
+  $
+    G slash ~_L = {g H | g in G}"， " G slash ~_R = {H g | g in G}.
+  $
+
+  那么我们有如下结论：
+
+  $
+    (forall g in G". " g H = H g) <=> H "是正规的".
+  $
+]
+
+#definition[
+  设 $H$ 是群 $G$ 的一个正规子群.
+
+  那么我们有一个等价关系：
+  
+  $
+    a op(~) b <=> a^(-1) b in H
+  $
+  
+  $
+    <=> a b^(-1) in H.
+  $
+
+  进而我们有对应的商群：
+
+  $
+    G slash ~ = {g H | g in G} = {H g | g in G}.
+  $
+
+  我们称 $G slash ~$ 为 $bold(G)$ *以* $bold(H)$ *为模的商群*，记为 $bold(G slash H)$.
+]
+
+#proposition[
+  商群 $G slash H$ 满足：
+
+  $1.$ $(a H) (b H) = (a b) H.$
+
+  $2.$ $e_(G slash H) = H$.
+]
+
+#definition[
+  设 $H$ 是群 $G$ 的一个正规子群. 定义范畴 $bold("Grp")slash H$：
+
+  $
+    op("Obj") (bold("Grp")slash H) := {(G', phi) | G' in op("Obj") (bold("Grp"))"， " phi in (G -> G')_bold("Grp")"， " forall g in G". " H subset op("ker") phi}，
+  $
+
+  $
+    (G_1, phi_1) -> (G_2, phi_2) := {sigma : (G_1 -> G_2)_bold("Grp") | sigma compose phi_1 = phi_2}.
+  $
+]
+
+#theorem[
+  $(G slash H, pi)$ 是 $bold("Grp")slash H$ 的始对象：
+
+  #align(center, diagram(spacing: 2cm, {
+    let (g, gh, gs) = ((0,0), (1,1), (2,0))
+    node(g, $G$)
+    node(gh, $G slash H$)
+    node(gs, $G'$)
+
+    edge(g, gh, $pi$, label-side: right, "->")
+    edge(g, gs, $phi$, "->")
+    edge(gh, gs, $tilde(phi)$, label-side: right, "-->")
+  }))
 ]
