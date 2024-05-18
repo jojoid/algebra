@@ -1602,74 +1602,6 @@
 ]
 
 #proposition[
-  设 $~_L$ 是群 $G$ 上的一个等价关系，满足：
-
-  $
-    forall a, b in G". " a op(~_L) b => forall g in G". " g a op(~_L) g b.
-  $
-
-  那么我们有：
-
-  $1.$ $[e_G]$ 是 $G$ 的一个子群.
-
-  $2.$ $(a op(~_L) b) <=> (a^(-1) b in [e_G]) <=> (a [e_G] = b [e_G])$.
-]
-
-#proposition[
-  设 $~_R$ 是群 $G$ 上的一个等价关系，满足：
-
-  $
-    forall a, b in G". " a op(~_R) b => forall g in G". " a g op(~_R) b g.
-  $
-
-  那么我们有：
-
-  $1.$ $[e_G]$ 是 $G$ 的一个子群.
-
-  $2.$ $(a op(~_R) b) <=> (a b^(-1) in [e_G]) <=> ([e_G] a = [e_G] b)$.
-]
-
-#proposition[
-  设 $H subset G$ 是群 $G$ 的一个子群. 定义群 $G$ 上的一个二元关系 
-  
-  $
-    ~_L : G times G -> bold("Propo"),
-  $
-
-  $
-    a op(~_L) b :<=> a^(-1) b in H.
-  $
-
-  那么我们有：
-
-  $1.$ $~_L$ 是一个等价关系.
-
-  $2.$ $H = [e_G]$.
-
-  $3.$ $forall a, b in G". " a op(~_L) b => forall g in G". " g a op(~_L) g b$.
-]
-
-#proposition[
-  设 $H subset G$ 是群 $G$ 的一个子群. 定义群 $G$ 上的一个二元关系 
-  
-  $
-    ~_R : G times G -> bold("Propo"),
-  $
-
-  $
-    a op(~_R) b :<=> a b^(-1) in H.
-  $
-
-  那么我们有：
-
-  $1.$ $~_R$ 是一个等价关系.
-
-  $2.$ $H = [e_G]$.
-
-  $3.$ $forall a, b in G". " a op(~_R) b => forall g in G". " a g op(~_R) b g$.
-]
-
-#proposition[
   设 $G$ 是一个群. 那么我们可以在
   
   群 $G$ 的所有子群 $H$ 的集合
@@ -1681,7 +1613,7 @@
   之间建立一对互逆映射：
 
   $
-    H |-> (a op(~_L) b :<=> a^(-1) b in H) " 和" ~_L |-> (H := [e_G]).
+    H |-> (a op(~_L) b :<=> a H = b H "（即" b in a H "）") " 和" ~_L |-> (H := [e_G]).
   $
 ]
 
@@ -1697,7 +1629,7 @@
   之间建立一对互逆映射：
 
   $
-    H |-> (a op(~_R) b :<=> a b^(-1) in H) " 和" ~_R |-> (H := [e_G]).
+    H |-> (a op(~_R) b :<=> H a = H b "（即" b in H a "）") " 和" ~_R |-> (H := [e_G]).
   $
 ]
 
@@ -1774,7 +1706,7 @@
 #proposition[
   设 $H$ 是群 $G$ 的一个子群.
   
-  由前述，我们可以定义两个等价关系 $a op(~_L) b :<=> a^(-1) b in H$ 和 $a op(~_R) b :<=> a b^(-1) in H$.
+  由前述，我们可以定义两个等价关系 $a op(~_L) b :<=> a H = b H$ 和 $a op(~_R) b :<=> H a = H b$.
   
   并且我们有两个商群：
 
@@ -1795,11 +1727,11 @@
   那么我们有一个等价关系：
   
   $
-    a op(~) b <=> a^(-1) b in H
+    a op(~) b <=> a H = b H
   $
   
   $
-    <=> a b^(-1) in H.
+    <=> H a = H b.
   $
 
   进而我们有对应的商群：
