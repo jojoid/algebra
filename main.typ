@@ -1598,7 +1598,7 @@
 #definition[
   *左陪集，右陪集*
 
-  设 $H subset G$ 是群 $G$ 的一个子群，$a in G$. 我们称集合 $bold(a H)$ 为 $H$ 在 $G$ 中的一个*左陪集*，称集合 $bold(H a)$ 为 $H$ 在 $G$ 中的一个*右陪集*.
+  设 $H subset G$ 是群 $G$ 的一个子群，$g in G$. 我们称集合 $bold(g H)$ 为 $H$ 在 $G$ 中的一个*左陪集*，称集合 $bold(H g)$ 为 $H$ 在 $G$ 中的一个*右陪集*.
 ]
 
 #proposition[
