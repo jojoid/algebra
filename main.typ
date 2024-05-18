@@ -1812,11 +1812,13 @@
 ]
 
 #proposition[
-  商群 $G slash H$ 满足：
+  设 $H$ 是群 $G$ 的一个正规子群，$pi : G -> G slash H, pi(g) := [g] = g H$. 则我们有：
 
-  $1.$ $(a H) (b H) = (a b) H.$
+  $1.$ $(a H) (b H) = (a b) H$.
 
   $2.$ $e_(G slash H) = H$.
+
+  $3.$ $op("ker") pi = {g in G | g H = H} = H$.
 ]
 
 #definition[
